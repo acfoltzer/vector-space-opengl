@@ -12,10 +12,8 @@ Cabal-version:       >=1.8
 
 Library
   exposed-modules:   Data.VectorSpace.OpenGL
-  other-modules:     Data.VectorSpace.OpenGL.TH
   hs-source-dirs:    src
-  extensions:        TemplateHaskell, TypeFamilies, UndecidableInstances
+  extensions:        TypeFamilies, UndecidableInstances
   build-depends:     base == 4.*,
-                     OpenGL == 2.4.*,
-                     template-haskell == 2.6.*,
-                     vector-space == 0.8.*
+                     OpenGL == 2.6.*,
+                     vector-space >= 0.8.6

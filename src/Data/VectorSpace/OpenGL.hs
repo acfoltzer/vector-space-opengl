@@ -1,4 +1,3 @@
-{-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE UndecidableInstances #-}
 
@@ -21,8 +20,6 @@ the 'Graphics.Rendering.OpenGL' types.
 
 module Data.VectorSpace.OpenGL where
 
-import Data.VectorSpace.OpenGL.TH
-
 import Control.Applicative
 import qualified Data.Foldable as F
 
@@ -31,52 +28,6 @@ import Data.Cross
 import Data.VectorSpace
 
 import Graphics.Rendering.OpenGL
-
---------------------------------------------------------------------------------
--- Scalar instances
-
-deriveScalar [ ''GLbyte
-             , ''GLshort
-             , ''GLint
-             , ''GLfloat
-             , ''GLdouble
-             ]
-
-instance VectorSpace GLbyte where
-  type Scalar GLbyte = GLbyte; (*^) = (*)
-instance VectorSpace GLshort where
-  type Scalar GLshort = GLshort; (*^) = (*)
-instance VectorSpace GLint where
-  type Scalar GLint = GLint; (*^) = (*)
-instance VectorSpace GLfloat where
-  type Scalar GLfloat = GLfloat; (*^) = (*)
-instance VectorSpace GLdouble where
-  type Scalar GLdouble = GLdouble; (*^) = (*)
-
-
-instance InnerSpace GLfloat where (<.>) = (*)
-instance InnerSpace GLdouble where (<.>) = (*)
-
-instance AffineSpace GLbyte where
-  type Diff GLbyte = GLbyte
-  (.-.) = (-)
-  (.+^) = (+)
-instance AffineSpace GLshort where
-  type Diff GLshort = GLshort
-  (.-.) = (-)
-  (.+^) = (+)
-instance AffineSpace GLint where
-  type Diff GLint = GLint
-  (.-.) = (-)
-  (.+^) = (+)
-instance AffineSpace GLfloat where
-  type Diff GLfloat = GLfloat
-  (.-.) = (-)
-  (.+^) = (+)
-instance AffineSpace GLdouble where
-  type Diff GLdouble = GLdouble
-  (.-.) = (-)
-  (.+^) = (+)
 
 --------------------------------------------------------------------------------
 -- Vector instances
