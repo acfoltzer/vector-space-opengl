@@ -16,6 +16,6 @@ Library
   hs-source-dirs:    src
   extensions:        TemplateHaskell, TypeFamilies, UndecidableInstances
   build-depends:     base == 4.*,
-                     OpenGL == 2.4.*,
-                     template-haskell == 2.6.*,
+                     OpenGL == 2.6.*,
+                     template-haskell == 2.8.*,
                      vector-space == 0.8.*
