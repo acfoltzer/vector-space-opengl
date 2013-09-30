@@ -1,8 +1,16 @@
 {-# LANGUAGE TemplateHaskell #-}
 
+import Data.VectorSpace
+import Graphics.Rendering.OpenGL.GL
+
+import Control.Applicative
 import Data.AEq
 import Data.Int
+import Foreign.C.Types
 
+import Test.Framework
+import Test.Framework.TH
+import Test.Framework.Providers.QuickCheck2
 import Test.QuickCheck
 import Test.QuickCheck.All
 
@@ -73,22 +81,15 @@ prop_innerSymDouble = innerSym :: GLdouble -> GLdouble -> Bool
 prop_innerLinMulDouble = innerLinMul :: GLdouble -> GLdouble -> GLdouble -> Bool
 prop_innerLinAddDouble = innerLinAdd :: GLdouble -> GLdouble -> GLdouble -> Bool
 
-instance Arbitrary GLshort where
+
+instance Arbitrary CShort where
   arbitrary = fromIntegral <$> (arbitrary :: Gen Int16)
-instance Arbitrary GLint where
+instance Arbitrary CInt where
   arbitrary = fromIntegral <$> (arbitrary :: Gen Int32)
-instance Arbitrary GLfloat where
+instance Arbitrary CFloat where
   arbitrary = realToFrac <$> (arbitrary :: Gen Float)
-instance Arbitrary GLdouble where
+instance Arbitrary CDouble where
   arbitrary = realToFrac <$> (arbitrary :: Gen Double)
 
-instance AEq GLshort
-instance AEq GLint
-instance AEq GLfloat where
-  x === y = realToFrac x === (realToFrac y :: Float)
-  x ~== y = realToFrac x ~== (realToFrac y :: Float)
-instance AEq GLdouble where
-  x === y = realToFrac x === (realToFrac y :: Double)
-  x ~== y = realToFrac x ~== (realToFrac y :: Double)
-
-test = $quickCheckAll
+main :: IO ()
+main = $(defaultMainGenerator)
