@@ -14,7 +14,7 @@ Library
   exposed-modules:   Data.VectorSpace.OpenGL
   hs-source-dirs:    src
   extensions:        TypeFamilies, UndecidableInstances
-  build-depends:     base         >= 4.0,
+  build-depends:     base         >= 4.0 && < 5,
                      OpenGL       >= 2.6.0,
                      vector-space >= 0.8.0
 
